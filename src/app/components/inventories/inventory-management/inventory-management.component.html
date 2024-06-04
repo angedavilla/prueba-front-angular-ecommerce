@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="inventory-management-container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-10 col-lg-8">
+                <mat-card>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">Gestión de Inventario</h2>
+                        <button mat-raised-button color="primary" (click)="openCreateInventoryDialog()">Agregar Ítem de Inventario</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <mat-table [dataSource]="inventoryItems" class="mat-elevation-z8 w-100">
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                    <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="product">
+                                    <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
+                                    <mat-cell *matCellDef="let item"> {{ item.product.name }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="quantity">
+                                    <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+                                    <mat-cell *matCellDef="let item"> {{ item.quantity }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                                    <mat-cell *matCellDef="let item">
+                                        <button mat-icon-button (click)="openEditInventoryDialog(item)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="warn" (click)="deleteInventoryItem(item.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

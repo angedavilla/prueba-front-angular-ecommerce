@@ -1,0 +1,79 @@
+<app-navbar></app-navbar>
+
+<div class="container my-5">
+    <div class="product-management-container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <mat-card>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="mb-5">Gestión de Productos</h2>
+                        <button mat-raised-button color="primary" (click)="openCreateProductDialog()">Crear Producto</button>
+                    </div>
+                    <div class="card-body">
+                        <form class="mb-4">
+                            <div class="form-group">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Nombre</mat-label>
+                                    <input matInput [(ngModel)]="filter.name" (ngModelChange)="applyFilter()" name="name">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Precio Mínimo</mat-label>
+                                    <input matInput type="number" [(ngModel)]="filter.minPrice" (ngModelChange)="applyFilter()" name="minPrice">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Precio Máximo</mat-label>
+                                    <input matInput type="number" [(ngModel)]="filter.maxPrice" (ngModelChange)="applyFilter()" name="maxPrice">
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <mat-checkbox [(ngModel)]="filter.active" (ngModelChange)="applyFilter()" name="active" class="mr-2">Activo</mat-checkbox>
+                            </div>
+                        </form>
+                        
+                        <div *ngIf="noProductsFound" class="no-products-found text-center">
+                            <p>No se encontraron productos</p>
+                        </div>
+                        
+                        <div class="table-responsive">
+                            <mat-table *ngIf="!noProductsFound" [dataSource]="filteredProducts" class="mat-elevation-z8 w-100">
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                    <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="name">
+                                    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                                    <mat-cell *matCellDef="let product"> {{ product.name }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="description">
+                                    <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+                                    <mat-cell *matCellDef="let product"> {{ product.description }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="price">
+                                    <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+                                    <mat-cell *matCellDef="let product"> {{ product.price | currency }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="active">
+                                    <mat-header-cell *matHeaderCellDef> Activo </mat-header-cell>
+                                    <mat-cell *matCellDef="let product"> {{ product.active ? 'Sí' : 'No' }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                                    <mat-cell *matCellDef="let product">
+                                        <button mat-button (click)="openEditProductDialog(product)">Editar</button>
+                                        <button mat-button color="warn" (click)="deleteProduct(product.id)">Eliminar</button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

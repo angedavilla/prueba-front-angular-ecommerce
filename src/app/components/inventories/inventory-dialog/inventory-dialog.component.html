@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{ data.item.id ? 'Editar Ítem de Inventario' : 'Agregar Ítem de Inventario' }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="inventoryForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Producto</mat-label>
+      <mat-select formControlName="productId">
+          <mat-option *ngFor="let product of products" [value]="product.id">
+              {{ product.id }} -  {{ product.name }} 
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cantidad</mat-label>
+      <input matInput formControlName="quantity" type="number">
+    </mat-form-field>
+  </form>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-button (click)="onSave()" [disabled]="!inventoryForm.valid">Guardar</button>
+</div>

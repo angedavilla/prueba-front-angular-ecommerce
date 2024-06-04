@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+    <div class="order-item-management-container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 col-md-10 col-lg-8">
+                <mat-card>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">Gestión de Ítems de Pedido</h2>
+                        <button mat-raised-button color="primary" (click)="openCreateOrderItemDialog()">Crear Ítem de Pedido</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <mat-table [dataSource]="orderItems" class="mat-elevation-z8 w-100">
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem"> {{ orderItem.id }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="order">
+                                    <mat-header-cell *matHeaderCellDef> ID de Pedido </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem"> {{ orderItem.order.id }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="product">
+                                    <mat-header-cell *matHeaderCellDef> Producto </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem"> {{ orderItem.product.name }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="quantity">
+                                    <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem"> {{ orderItem.quantity }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="price">
+                                    <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem"> {{ orderItem.price | currency }} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+                                    <mat-cell *matCellDef="let orderItem">
+                                        <button mat-icon-button (click)="openEditOrderItemDialog(orderItem)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="warn" (click)="deleteOrderItem(orderItem.id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </mat-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

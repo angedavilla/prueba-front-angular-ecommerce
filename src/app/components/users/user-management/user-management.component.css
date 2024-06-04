@@ -1,0 +1,29 @@
+.container {
+    margin-top: 50px;
+}
+
+.user-management-container {
+    margin: 0 auto;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.mat-table {
+    width: 100%;
+}
+
+.mat-header-cell, .mat-cell {
+    padding: 8px;
+}
+
+button[mat-button] {
+    margin-right: 5px;
+}

@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="home-container">
+    <div class="row mb-4">
+      <div class="col-lg-12">
+        <mat-card class="text-center">
+          <h2>Bienvenido, {{ username }}!</h2>
+          <p>Aquí están algunos productos y datos importantes para ti.</p>
+        </mat-card>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mb-4">
+        <mat-card>
+          <h3>Productos Activos</h3>
+          <mat-list>
+            <mat-list-item *ngFor="let product of activeProducts">
+              {{ product.name }} - {{ product.price | currency }}
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <mat-card>
+          <h3>Productos Más Vendidos</h3>
+          <mat-list>
+            <mat-list-item *ngFor="let product of topSellingProducts">
+              {{ product[1] }} - {{ product[2] }} unidades vendidas
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </div>
+
+      <div class="col-lg-4 col-md-6 mb-4">
+        <mat-card>
+          <h3>Clientes Frecuentes</h3>
+          <mat-list>
+            <mat-list-item *ngFor="let customer of frequentCustomers">
+              {{ customer[1] }} - {{ customer[2] }} órdenes
+            </mat-list-item>
+          </mat-list>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

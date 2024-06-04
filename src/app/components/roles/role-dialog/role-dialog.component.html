@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ data.role.id ? 'Editar Rol' : 'Crear Rol' }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="roleForm">
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button (click)="onSave()" [disabled]="!roleForm.valid">Guardar</button>
+</div>

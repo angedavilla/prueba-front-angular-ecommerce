@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <mat-card>
+      <mat-card-title>Administración de Roles de Usuario</mat-card-title>
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre de Usuario</mat-label>
+          <mat-select [(ngModel)]="selectedUsername" name="selectedUsername" required>
+            <mat-option *ngFor="let user of users" [value]="user.username">
+              {{ user.username }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="getUserRoles()">Obtener Roles</button>
+  
+        <div *ngIf="roles.length">
+          <h3>Roles:</h3>
+          <mat-list>
+            <mat-list-item *ngFor="let role of roles">
+              {{ role }}
+              <button mat-icon-button color="warn" (click)="removeUserRole(role)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </div>
+  
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Nuevo Rol</mat-label>
+            <input matInput [(ngModel)]="newRole" placeholder="Ingrese el nuevo rol">
+          </mat-form-field>
+          <button mat-raised-button color="accent" (click)="addUserRole()">Agregar Rol</button>
+        </div>
+  
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Rol Antiguo</mat-label>
+            <input matInput [(ngModel)]="oldRole" placeholder="Ingrese el rol antiguo">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Nuevo Rol</mat-label>
+            <input matInput [(ngModel)]="newRole" placeholder="Ingrese el nuevo rol">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="changeUserRole()">Cambiar Rol</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+</div>

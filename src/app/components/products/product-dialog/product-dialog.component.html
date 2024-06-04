@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>{{ data.product.id ? 'Editar Producto' : 'Crear Producto' }}</h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Descripción</mat-label>
+                <input matInput formControlName="description">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="price">
+            </mat-form-field>
+        </div>
+        <div style="margin-top: 16px;">
+            <mat-checkbox formControlName="active">Activo</mat-checkbox>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions class="d-flex justify-content-end">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-button (click)="onSave()" [disabled]="!productForm.valid">Guardar</button>
+</div>
